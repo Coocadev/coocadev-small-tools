@@ -1,0 +1,7 @@
+/**
+ * Local presentation styles; no external assets or runtime dependency.
+ *
+ * Copyright (c) 2026 Coocadev.
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+.ccfg-wrap{max-width:1150px}.ccfg-form{margin:1rem 0;padding:1rem;background:#fff;border:1px solid #c3c4c7}.ccfg-form>label{display:block;margin:.6rem 0 .3rem}.ccfg-form .button{margin-top:.7rem}.ccfg-version{padding:1rem;margin:1rem 0;background:#fff;border:1px solid #c3c4c7}.ccfg-version h3{margin-top:0}.ccfg-wrap .widefat{margin-top:1rem}.ccfg-wrap input:focus,.ccfg-wrap a:focus,.ccfg-wrap button:focus{outline-offset:3px}.ccfg-wrap .large-text{max-width:100%}.ccfg-wrap .widefat td{overflow-wrap:anywhere}@media(max-width:650px){.ccfg-wrap .widefat{display:block;overflow-x:auto}.ccfg-form input.regular-text{max-width:100%}}

@@ -1,0 +1,7 @@
+/**
+ * Local presentation styles; no external assets or runtime dependency.
+ *
+ * Copyright (c) 2026 Coocadev.
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+.column-ccdm_marks{width:22%}.ccdm-marks{display:flex;flex-direction:column;align-items:flex-start;gap:5px}.ccdm-toggle{text-align:start;white-space:normal!important}.ccdm-marks small{font-size:11px;color:#646970}.ccdm-marks details{display:flex}.ccdm-marks details button{display:block;margin:5px 0}.ccdm-status{display:block;color:#50575e}.ccdm-status.ccdm-error{color:#b32d2e}.ccdm-settings{max-width:1000px}.ccdm-definition{border:1px solid #c3c4c7;background:#fff;padding:16px;margin:20px 0}.ccdm-delete{margin-bottom:14px}.ccdm-type{display:inline-block;margin:4px 12px 4px 0}.ccdm-quick-fields label{display:block;margin:6px 0}.ccdm-bulk{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}.ccdm-bulk-result{flex-basis:100%;white-space:pre-wrap}.ccdm-toggle:focus-visible{outline:2px solid #2271b1;outline-offset:3px}@media(max-width:782px){.column-ccdm_marks{width:auto}.ccdm-marks{min-width:150px}}

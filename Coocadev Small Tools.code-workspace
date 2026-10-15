@@ -1,0 +1,22 @@
+{
+  "settings": {
+    "php.validate.enable": true,
+    "files.exclude": {
+      "**/qa/runtime": true,
+      "**/qa/min-sites": true,
+      "**/qa/sites": true
+    },
+    "search.exclude": {
+      "**/qa/runtime": true,
+      "**/qa/secrets": true,
+      "**/qa/min-sites": true,
+      "**/qa/sites": true,
+      "**/evidence/private-mail": true
+    }
+  },
+  "folders": [
+    {
+      "path": "."
+    }
+  ]
+}

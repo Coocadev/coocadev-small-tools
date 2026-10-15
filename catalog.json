@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "license": "GPL-2.0-or-later",
+  "source": "https://github.com/zagulev/coocadev-small-tools",
+  "products": [
+    {"name":"FileGo","slug":"coocadev-filego","namespace":"Coocadev\\FileGo","prefix":"ccfg_","purpose":"Permanent public PDF links with version history and rollback"},
+    {"name":"UploadGo","slug":"coocadev-uploadgo","namespace":"Coocadev\\UploadGo","prefix":"ccug_","purpose":"Role-aware upload limits that only tighten Core/server policy"},
+    {"name":"DispatchGo","slug":"coocadev-dispatchgo","namespace":"Coocadev\\DispatchGo","prefix":"ccdg_","purpose":"Shipping-resumption notices saved with WooCommerce orders"},
+    {"name":"Reader Notes","slug":"coocadev-reader-notes","namespace":"Coocadev\\ReaderNotes","prefix":"ccrn_","purpose":"Private per-post reader notes and personal export"},
+    {"name":"DoneMark","slug":"coocadev-donemark","namespace":"Coocadev\\DoneMark","prefix":"ccdm_","purpose":"Editorial checkmarks that detect stale content reviews"},
+    {"name":"Client Nudge","slug":"coocadev-client-nudge","namespace":"Coocadev\\ClientNudge","prefix":"cccn_","purpose":"Assigned material requests with opted-in weekly incomplete-task reminders"},
+    {"name":"StockDigest","slug":"coocadev-stockdigest","namespace":"Coocadev\\StockDigest","prefix":"ccsd_","purpose":"Low-stock digest with supplier-order snoozing"},
+    {"name":"InvoiceRoute","slug":"coocadev-invoiceroute","namespace":"Coocadev\\InvoiceRoute","prefix":"ccir_","purpose":"Order-specific accounting email for customer invoices"},
+    {"name":"DownloadRescue","slug":"coocadev-downloadrescue","namespace":"Coocadev\\DownloadRescue","prefix":"ccdr_","purpose":"Owner requests and merchant-approved extension of existing download access"},
+    {"name":"HoursGo","slug":"coocadev-hoursgo","namespace":"Coocadev\\HoursGo","prefix":"cchg_","purpose":"Business hours with expiring temporary overrides"},
+    {"name":"MediaMap","slug":"coocadev-mediamap","namespace":"Coocadev\\MediaMap","prefix":"ccmm_","purpose":"Bounded image-reference scan of stored Core content"},
+    {"name":"UseMap","slug":"coocadev-usemap","namespace":"Coocadev\\UseMap","prefix":"ccum_","purpose":"Bounded stored block and shortcode usage scan"},
+    {"name":"Passport","slug":"coocadev-passport","namespace":"Coocadev\\PluginPassport","prefix":"ccpp_","purpose":"Private plugin purpose, ownership and update-check notes with export"},
+    {"name":"ReleaseGo","slug":"coocadev-releasego","namespace":"Coocadev\\ReleaseGo","prefix":"ccrg_","purpose":"Published product version history with new, fixed and improved changes"},
+    {"name":"MailSkin","slug":"coocadev-mailskin","namespace":"Coocadev\\MailSkin","prefix":"ccms_","purpose":"Previewable local branding for WordPress system emails"}
+  ]
+}

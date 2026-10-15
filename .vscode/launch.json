@@ -1,0 +1,51 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "env": {
+        "XDEBUG_CONFIG": "client_port=9003"
+      },
+      "type": "php",
+      "pathMappings": {
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-filego": "${workspaceFolder}/projects/coocadev-filego/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-uploadgo": "${workspaceFolder}/projects/coocadev-uploadgo/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-dispatchgo": "${workspaceFolder}/projects/coocadev-dispatchgo/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-reader-notes": "${workspaceFolder}/projects/coocadev-reader-notes/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-donemark": "${workspaceFolder}/projects/coocadev-donemark/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-client-nudge": "${workspaceFolder}/projects/coocadev-client-nudge/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-stockdigest": "${workspaceFolder}/projects/coocadev-stockdigest/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-invoiceroute": "${workspaceFolder}/projects/coocadev-invoiceroute/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-downloadrescue": "${workspaceFolder}/projects/coocadev-downloadrescue/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-hoursgo": "${workspaceFolder}/projects/coocadev-hoursgo/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-mediamap": "${workspaceFolder}/projects/coocadev-mediamap/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-usemap": "${workspaceFolder}/projects/coocadev-usemap/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-passport": "${workspaceFolder}/projects/coocadev-passport/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-releasego": "${workspaceFolder}/projects/coocadev-releasego/plugin",
+        "${workspaceFolder}/qa/sites/combined/wp-content/plugins/coocadev-mailskin": "${workspaceFolder}/projects/coocadev-mailskin/plugin"
+      },
+      "port": 9003,
+      "name": "Small Tools: local WordPress PHP debug",
+      "runtimeArgs": [
+        "-d",
+        "zend_extension=${workspaceFolder}/qa/runtime/php81/ext/php_xdebug-3.4.5.dll",
+        "-d",
+        "xdebug.mode=debug",
+        "-d",
+        "xdebug.start_with_request=yes",
+        "-d",
+        "xdebug.client_host=127.0.0.1"
+      ],
+      "program": "${workspaceFolder}/qa/downloads/wp-cli.phar",
+      "stopOnEntry": true,
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--path=${workspaceFolder}/qa/sites/combined",
+        "eval-file",
+        "${workspaceFolder}/qa/debug-probe.php"
+      ],
+      "request": "launch",
+      "hostname": "127.0.0.1",
+      "runtimeExecutable": "${workspaceFolder}/qa/runtime/php81/php.exe"
+    }
+  ]
+}

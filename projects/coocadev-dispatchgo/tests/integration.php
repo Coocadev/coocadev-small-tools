@@ -1,0 +1,122 @@
+<?php
+/** Isolated real-WP/Woo tests. php tests/integration.php <path-to-wp> */
+if ( empty( $argv[1] ) || ! preg_match( '~/qa/(?:min-)?sites/dispatchgo$~', str_replace( '\\', '/', $argv[1] ) ) ) { throw new RuntimeException( 'Only the isolated DispatchGo QA site is allowed.' ); }
+define( 'WP_USE_THEMES', false );
+require rtrim( $argv[1], '/\\' ) . '/wp-load.php';
+use Coocadev\DispatchGo\Repository;
+use Coocadev\DispatchGo\Schedule;
+use Coocadev\DispatchGo\Plugin;
+add_filter( 'pre_wp_mail', '__return_true' );
+wp_set_current_user( 1 );
+wc_load_cart();
+$count = 0;
+function check( $condition, $name ) { global $count; ++$count; if ( ! $condition ) { throw new RuntimeException( 'FAIL: ' . $name ); } echo 'PASS ' . $name . PHP_EOL; }
+function rejects( callable $fn, $name ) { try { $fn(); } catch ( Exception $e ) { check( true, $name ); return; } check( false, $name ); }
+echo 'Environment: WP ' . get_bloginfo( 'version' ) . ', Woo ' . WC_VERSION . ', PHP ' . PHP_VERSION . ', HPOS=' . ( \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled() ? 'on' : 'off' ) . PHP_EOL;
+$old_settings = Repository::settings();
+$ids = array();
+try {
+    $s = Repository::defaults();
+    $s['enabled'] = true;
+    $s['starts_at_utc'] = time() - 3600;
+    $s['resumes_at_utc'] = time() + 864000;
+    $s['resumes_local_date'] = gmdate( 'Y-m-d', time() + 864000 );
+    $s['customer_message'] = 'Synthetic test pause.';
+    $s['revision'] = 1;
+    update_option( 'ccdg_settings', $s );
+    check( Repository::save_settings( $s, 1 ), 'settings CAS accepts current revision' );
+    check( ! Repository::save_settings( $s, 1 ), 'settings CAS rejects stale tab' );
+    check( Repository::settings()['revision'] === 2, 'CAS revision persisted' );
+    $product = new WC_Product_Simple();
+    $product->set_name( 'DispatchGo isolated physical fixture' );
+    $product->set_regular_price( '1' );
+    $product->set_status( 'publish' );
+    $product_id = $product->save();
+    WC()->cart->empty_cart();
+    WC()->cart->add_to_cart( $product_id );
+    update_option( 'woocommerce_ship_to_countries', '' );
+    update_option( 'woocommerce_shipping_cost_requires_address', 'no' );
+    $zone = new WC_Shipping_Zone( 0 );
+    if ( ! $zone->get_shipping_methods() ) { $zone->add_shipping_method( 'flat_rate' ); }
+    delete_transient( 'wc_shipping_method_count' );
+    WC()->session->set( 'chosen_shipping_methods', array( 'flat_rate:1' ) );
+    $preview = Plugin::preview();
+    echo 'Fixture cart: ' . wp_json_encode( array( 'count' => WC()->cart->get_cart_contents_count(), 'shipping' => WC()->cart->needs_shipping(), 'terms' => Plugin::current_terms() ) ) . PHP_EOL;
+    check( str_contains( $preview['text'], 'Synthetic test pause.' ), 'cart preview uses server settings' );
+    check( Schedule::verify( $preview['token'], Plugin::current_terms(), wp_salt( 'auth' ), time() ), 'real WP salt preview signature' );
+    $_POST['ccdg_preview_token'] = $preview['token'];
+    $_POST['woocommerce-process-checkout-nonce'] = wp_create_nonce( 'woocommerce-process_checkout' );
+    $errors = new WP_Error();
+    Plugin::classic_validate( array(), $errors );
+    check( ! $errors->has_errors(), 'classic valid preview accepted' );
+    $order = wc_create_order(); $ids[] = $order->get_id();
+    Plugin::classic_freeze( $order );
+    $snapshot = $order->get_meta( '_ccdg_snapshot', true );
+    check( $snapshot['terms']['applicable'] && 'classic' === $snapshot['source'], 'classic saved immutable snapshot' );
+    check( Repository::receipt( $order->get_id() ) === $snapshot, 'ledger and CRUD metadata agree' );
+    $unchanged = Repository::freeze( $order, array_merge( $snapshot, array( 'captured_at_utc' => '2099-01-01T00:00:00Z' ) ) );
+    check( $unchanged === $snapshot, 'retry does not replace original capture' );
+    $changed = $snapshot; $changed['terms']['message_plain'] = 'Different terms';
+    rejects( fn() => Repository::freeze( $order, $changed ), 'conflicting receipt cannot overwrite' );
+    check( Repository::receipt( $order->get_id() ) === $snapshot, 'immutable winner survives conflict' );
+    ob_start(); Plugin::email_notice( $order, false, false, null ); $html = ob_get_clean();
+    ob_start(); Plugin::email_notice( $order, false, true, null ); $plain = ob_get_clean();
+    check( str_contains( $html, 'Synthetic test pause.' ) && str_contains( $html, '<section' ), 'HTML email renders snapshot' );
+    check( str_contains( $plain, 'Synthetic test pause.' ) && ! str_contains( $plain, '<section' ), 'plain email contains no HTML wrapper' );
+    $s['customer_message'] = 'Changed schedule after checkout'; $s['revision'] = 3; update_option( 'ccdg_settings', $s );
+    ob_start(); Plugin::email_notice( $order, false, false, null ); $resent = ob_get_clean();
+    check( $html === $resent, 'resend ignores changed settings' );
+    check( count( Plugin::privacy_export( array(), $order ) ) === 1, 'order privacy export includes receipt' );
+    $_POST['ccdg_preview_token'] = $preview['token']; $errors = new WP_Error();
+    Plugin::classic_validate( array(), $errors );
+    check( $errors->has_errors(), 'classic stale preview rejected before creation' );
+    $draft = wc_create_order( array( 'status' => 'checkout-draft' ) ); $ids[] = $draft->get_id();
+    $request = new WP_REST_Request( 'PATCH', '/wc/store/v1/checkout' );
+    Plugin::blocks_freeze( $draft, $request );
+    check( null === Repository::receipt( $draft->get_id() ), 'Blocks PATCH never freezes draft' );
+    $request = new WP_REST_Request( 'POST', '/wc/store/v1/checkout' );
+    rejects( fn() => Plugin::blocks_freeze( $draft, $request ), 'Blocks active pause missing token rejected' );
+    check( null === Repository::receipt( $draft->get_id() ), 'invalid token creates no receipt' );
+    $request->set_param( 'extensions', array( 'ccdg' => array( 'token' => Plugin::preview()['token'], 'date' => '2099-01-01' ) ) );
+    Plugin::blocks_freeze( $draft, $request );
+    $blocks = Repository::receipt( $draft->get_id() );
+    check( 'blocks' === $blocks['source'] && $blocks['terms']['resumes_local_date'] === $s['resumes_local_date'], 'Blocks uses server date, ignores browser date' );
+    $old_token = $request->get_param( 'extensions' )['ccdg']['token'];
+    $s['customer_message'] = 'Second change'; update_option( 'ccdg_settings', $s );
+    Plugin::blocks_freeze( $draft, $request );
+    check( Repository::receipt( $draft->get_id() ) === $blocks, 'Blocks payment retry keeps original promise' );
+    WC()->session->set( 'chosen_shipping_methods', array( 'local_pickup:1' ) );
+    check( ! Plugin::current_terms()['applicable'], 'pickup cart suppressed' );
+    WC()->cart->empty_cart();
+    check( ! Plugin::current_terms()['applicable'], 'empty cart suppressed' );
+    $inactive = wc_create_order(); $ids[] = $inactive->get_id();
+    $request->set_param( 'extensions', array() );
+    Plugin::blocks_freeze( $inactive, $request );
+    check( false === Repository::receipt( $inactive->get_id() )['terms']['applicable'], 'non-applicable decision frozen' );
+    $manual = wc_create_order(); $ids[] = $manual->get_id();
+    check( '' === $manual->get_meta( '_ccdg_snapshot', true ), 'manual order receives no invented promise' );
+    $xss = $snapshot; $xss['terms']['message_plain'] = '<script>alert(1)</script><b>text</b>';
+    $manual->update_meta_data( '_ccdg_snapshot', $xss ); $manual->save_meta_data();
+    ob_start(); Plugin::order_notice( $manual ); $escaped = ob_get_clean();
+    check( ! str_contains( $escaped, '<script>' ) && str_contains( $escaped, '&lt;script&gt;' ), 'late escaping defeats stored XSS' );
+    ob_start(); Plugin::email_notice( $manual, false, true, null ); $text = ob_get_clean();
+    check( ! str_contains( $text, '<script>' ), 'plain email strips HTML tags' );
+    $manual->update_meta_data( '_ccdg_snapshot', array( 'version' => 1, 'terms' => array( 'applicable' => true ) ) ); $manual->save_meta_data();
+    ob_start(); Plugin::order_notice( $manual ); $corrupt = ob_get_clean();
+    check( '' === $corrupt, 'corrupt receipt does not invent a customer date' );
+    ob_start(); Plugin::admin_order_notice( $manual ); $diagnostic = ob_get_clean();
+    check( str_contains( $diagnostic, 'damaged or uses an unsupported format' ), 'corrupt receipt shows an administrator diagnostic' );
+    $cart_api = new WP_REST_Request( 'GET', '/wc/store/v1/cart' );
+    $response = rest_do_request( $cart_api );
+    $body = json_decode( wp_json_encode( $response->get_data() ), true );
+    check( 200 === $response->get_status(), 'Store API cart route responds' );
+    check( isset( $body['extensions']['ccdg']['token'] ), 'Store API extension returns preview' );
+    $delete_id = $inactive->get_id(); $inactive->delete( true );
+    check( null === Repository::receipt( $delete_id ), 'permanent Woo order delete removes ledger row' );
+    echo "PASS: $count integration assertions\n";
+} finally {
+    update_option( 'ccdg_settings', $old_settings );
+    WC()->cart->empty_cart();
+    foreach ( $ids as $id ) { $item = wc_get_order( $id ); if ( $item ) { $item->delete( true ); } }
+    if ( isset( $product_id ) ) { wp_delete_post( $product_id, true ); }
+}

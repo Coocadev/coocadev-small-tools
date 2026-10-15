@@ -1,0 +1,7 @@
+/**
+ * Local presentation styles; no external assets or runtime dependency.
+ *
+ * Copyright (c) 2026 Coocadev.
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+.wc-block-components-totals-wrapper.slot-wrapper .ccdg-block-notice,.ccdg-block-notice{padding:1rem;border:1px solid currentColor;border-radius:4px;margin-block:1rem;color:inherit;font-size:1rem;line-height:1.5;box-sizing:border-box}.ccdg-block-notice p{margin-block:0 .75rem}.ccdg-block-notice .ccdg-refresh{font:inherit;text-decoration:underline;background:transparent;color:inherit;border:0;padding:.25rem;cursor:pointer}.ccdg-refresh:focus-visible{outline:2px solid currentColor;outline-offset:3px}.ccdg-checkout-notice .woocommerce-info{margin-block:1rem}.ccdg-order-notice{margin-block:1.5rem}

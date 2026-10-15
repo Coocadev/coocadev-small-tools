@@ -1,0 +1,19 @@
+# Local generated/test material never belongs in this repository.
+.env
+.env.*
+!.env.example
+**/.runtime-fixture.json
+**/*private-fixture.json
+**/*credentials*.json
+**/*cookies*
+**/*.log
+**/node_modules/
+**/vendor/
+qa/sites/
+qa/min-sites/
+qa/secrets/
+qa/min-secrets/
+qa/runtime/
+qa/downloads/
+qa/results/
+artifacts/

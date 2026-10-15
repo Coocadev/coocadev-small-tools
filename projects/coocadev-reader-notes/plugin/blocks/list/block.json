@@ -1,0 +1,13 @@
+{
+  "apiVersion": 3,
+  "name": "coocadev-reader-notes/list",
+  "title": "My Notes",
+  "category": "widgets",
+  "icon": "list-view",
+  "description": "Private list, search and export of the signed-in reader's notes.",
+  "textdomain": "coocadev-reader-notes",
+  "supports": {
+    "html": false
+  },
+  "editorScript": "ccrn-blocks"
+}

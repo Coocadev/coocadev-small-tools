@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "process",
+      "command": "powershell.exe",
+      "problemMatcher": [],
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/qa/build-packages.ps1"
+      ],
+      "label": "Small Tools: build all plugin ZIPs"
+    },
+    {
+      "type": "process",
+      "command": "powershell.exe",
+      "problemMatcher": [],
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/qa/verify-packages.ps1"
+      ],
+      "label": "Small Tools: verify installed release"
+    },
+    {
+      "type": "process",
+      "command": "node",
+      "problemMatcher": [],
+      "args": [
+        "${workspaceFolder}/qa/debug-adapter-test.cjs"
+      ],
+      "label": "Small Tools: PHP Debug adapter test"
+    }
+  ]
+}

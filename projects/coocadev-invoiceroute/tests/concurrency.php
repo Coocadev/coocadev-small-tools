@@ -1,0 +1,11 @@
+<?php
+/** Four independent processes must preserve one immutable accounting winner. */
+use Coocadev\InvoiceRoute\Plugin;
+if(!defined('WP_CLI')||!WP_CLI||'local'!==wp_get_environment_type()||!in_array(wp_parse_url(home_url(),PHP_URL_HOST),array('127.0.0.1','localhost','::1'),true)||!preg_match('~/qa/(?:min-)?sites/dispatchgo/?$~',str_replace('\\','/',ABSPATH))){throw new RuntimeException('Reserved local WP-CLI QA only.');}
+$dir=dirname(untrailingslashit(ABSPATH),3).'/projects/coocadev-invoiceroute/reports/0.2.0/';$path=$dir.'concurrency-fixture.private.json';$mode=$args[0]??'';
+add_filter('pre_wp_mail','__return_true',PHP_INT_MAX);
+if('setup'===$mode){if(is_file($path)){throw new RuntimeException('Clean previous fixture');}$order=wc_create_order(array('created_via'=>'ccir-qa-concurrency'));file_put_contents($path,wp_json_encode(array('order'=>$order->get_id())));echo "READY\n";
+}elseif('worker'===$mode){if(!is_file($path)||!ctype_digit($args[1]??'')||(int)$args[1]>4){throw new RuntimeException('Invalid worker fixture');}$fixture=json_decode(file_get_contents($path),true);$order=wc_get_order($fixture['order']);if(!$order||'ccir-qa-concurrency'!==$order->get_created_via()){throw new RuntimeException('Fixture ownership mismatch');}$result=Plugin::freeze($order,'worker-'.(int)$args[1].'@example.invalid');if(is_wp_error($result)){throw new RuntimeException($result->get_error_code());}echo wp_json_encode(array('winner'=>$result)).PHP_EOL;
+}elseif('verify'===$mode){$fixture=json_decode(file_get_contents($path),true);$winner=Plugin::receipt($fixture['order']);$order=wc_get_order($fixture['order']);if(!preg_match('/^worker-[1-4]@example\.invalid$/',$winner??'')||$winner!==$order->get_meta('_ccir_accounting_email',true)){throw new RuntimeException('Immutable winner/mirror mismatch');}echo wp_json_encode(array('plugin'=>'InvoiceRoute','workers'=>4,'one_immutable_winner'=>true,'pass'=>true)).PHP_EOL;
+}elseif('cleanup'===$mode){if(is_file($path)){$fixture=json_decode(file_get_contents($path),true);$order=wc_get_order($fixture['order']);if($order&&'ccir-qa-concurrency'===$order->get_created_via()){$order->delete(true);}unlink($path);}echo "CLEAN\n";
+}else{throw new RuntimeException('Unknown local test mode');}

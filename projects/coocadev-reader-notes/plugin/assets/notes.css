@@ -1,0 +1,27 @@
+/**
+ * Local presentation styles; no external assets or runtime dependency.
+ *
+ * Copyright (c) 2026 Coocadev.
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+/* Coocadev Reader Notes. GPL-2.0-or-later. */
+.ccrn-shell{box-sizing:border-box;border:1px solid #9aa5af;border-radius:.5rem;padding:1rem;margin:1.25rem 0;max-width:64rem;background:#fff;color:#17212b;line-height:1.5;font-size:1rem}
+.ccrn-shell *{box-sizing:border-box}
+.ccrn-shell label{display:block;font-weight:600;margin:.5rem 0}
+.ccrn-shell textarea{display:block;width:100%;min-height:10rem;resize:vertical;border:1px solid #677684;border-radius:.25rem;padding:.7rem;background:#fff;color:#17212b;font:inherit}
+.ccrn-shell input[type=search]{width:min(100%,28rem);padding:.6rem;border:1px solid #677684;border-radius:.25rem;font:inherit}
+.ccrn-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin:.75rem 0}
+.ccrn-shell button{font:inherit;min-height:2.75rem;padding:.45rem .85rem;border:1px solid #174d73;border-radius:.25rem;background:#155f91;color:#fff;cursor:pointer;white-space:normal}
+.ccrn-shell button:disabled{opacity:.6;cursor:wait}
+.ccrn-shell :focus-visible{outline:3px solid #bc5700;outline-offset:3px}
+.ccrn-shell a{color:#064b86;text-decoration:underline}
+.ccrn-shell small{display:block}
+.ccrn-status{min-height:1.5em;font-weight:600}
+.ccrn-error{color:#942b14}
+.ccrn-conflict{padding:.7rem;border:2px solid #a64b00}
+.ccrn-shell pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;max-height:20rem;overflow:auto}
+.ccrn-entry{border-block-start:1px solid #b7c2cc;padding-block:1rem}
+.ccrn-entry p,.ccrn-shell h3{overflow-wrap:anywhere}
+.ccrn-shell[aria-busy=true]{opacity:.85}
+@media(prefers-reduced-motion:reduce){.ccrn-shell *{scroll-behavior:auto}}
+

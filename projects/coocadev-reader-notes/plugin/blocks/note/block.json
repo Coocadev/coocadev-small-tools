@@ -1,0 +1,16 @@
+{
+  "apiVersion": 3,
+  "name": "coocadev-reader-notes/note",
+  "title": "Reader Note",
+  "category": "widgets",
+  "icon": "edit",
+  "description": "Private notes for the signed-in reader of this article.",
+  "textdomain": "coocadev-reader-notes",
+  "supports": {
+    "html": false
+  },
+  "usesContext": [
+    "postId"
+  ],
+  "editorScript": "ccrn-blocks"
+}
