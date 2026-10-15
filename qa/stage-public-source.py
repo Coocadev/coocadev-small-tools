@@ -121,6 +121,8 @@ qa/downloads/
 qa/results/
 artifacts/
 ''', encoding='utf-8')
+# Preserve the audited bytes regardless of a contributor's global autocrlf setting.
+(destination / '.gitattributes').write_text('* -text\n', encoding='utf-8')
 (destination / 'SOURCE_MANIFEST.json').write_text(json.dumps({'version': catalog['version'], 'license': catalog['license'], 'files': manifest}, indent=2) + '\n', encoding='utf-8')
 archive = root / 'artifacts' / catalog['version'] / ('coocadev-small-tools-source-' + catalog['version'] + '.zip')
 archive.parent.mkdir(parents=True, exist_ok=True)
@@ -130,4 +132,4 @@ with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as out:
             info = zipfile.ZipInfo('coocadev-small-tools-' + catalog['version'] + '/' + path.relative_to(destination).as_posix(), (2026, 10, 15, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             out.writestr(info, path.read_bytes())
-print(json.dumps({'destination': str(destination), 'files': len(manifest) + 2, 'archive': str(archive), 'bytes': archive.stat().st_size, 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest()}, indent=2))
+print(json.dumps({'destination': str(destination), 'files': len(manifest) + 3, 'archive': str(archive), 'bytes': archive.stat().st_size, 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest()}, indent=2))

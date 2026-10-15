@@ -1374,8 +1374,8 @@
     },
     {
       "path": "qa/stage-public-source.py",
-      "bytes": 6642,
-      "sha256": "df597a4e092e56519346f1376143eec2ce26312230783448fb4f634a4f9219e1"
+      "bytes": 6801,
+      "sha256": "0ec1e19f316473e34048bb79b1dc8eb7a85097ac7c8dc129b7cfdc87e329ab8c"
     },
     {
       "path": "qa/verify-packages.ps1",
