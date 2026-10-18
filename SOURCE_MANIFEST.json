@@ -19,8 +19,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 2789,
-      "sha256": "d2e007c194f9a35b17db512144f9853418cbecb07932ee0f3ed191fca5d5cd56"
+      "bytes": 2790,
+      "sha256": "540a8dad6ee4d5ce21f392638d87f5e0c46305f9d068d5abbdd19accf561ff47"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -39,13 +39,13 @@
     },
     {
       "path": "OPEN_SOURCE.md",
-      "bytes": 3492,
-      "sha256": "ebf3f66d99de27e348b44b1ccdd7457a660ab117c503f5858f32d6f550c9297b"
+      "bytes": 3493,
+      "sha256": "22dd2e7ce18ab20761808525dfa87a4e0deee073f1682380fd7cd0201e628018"
     },
     {
       "path": "PACKAGE_REPORT.md",
-      "bytes": 8118,
-      "sha256": "48c697418d43e2a0e8d2c654ffd395eceacd301e04b82cbd9319f8c44e909d4e"
+      "bytes": 8135,
+      "sha256": "b70059c0bab8d313fa37e1dd0c2cd31dacb95f01e32a1939735ef79ba2c8fed2"
     },
     {
       "path": "projects/coocadev-client-nudge/DEPENDENCIES.md",

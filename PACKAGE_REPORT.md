@@ -6,23 +6,23 @@ Date: 15 October 2026. Fifteen independent GPL-2.0-or-later plugins, with readab
 
 | Plugin ZIP | Files | Bytes | PHP / JS syntax checks | Plugin Check errors / warnings |
 | --- | ---: | ---: | ---: | ---: |
-| [FileGo](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-filego-0.2.0.zip) | 10 | 32023 | 7 / 0 | 0 / 96 |
-| [UploadGo](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-uploadgo-0.2.0.zip) | 11 | 29418 | 7 / 1 | 0 / 7 |
-| [DispatchGo](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-dispatchgo-0.2.0.zip) | 10 | 26373 | 5 / 2 | 0 / 0 |
-| [Reader Notes](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-reader-notes-0.2.0.zip) | 13 | 35973 | 6 / 2 | 0 / 52 |
-| [DoneMark](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-donemark-0.2.0.zip) | 11 | 30668 | 7 / 1 | 0 / 12 |
-| [Client Nudge](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-client-nudge-0.2.0.zip) | 5 | 16678 | 3 / 0 | 0 / 10 |
-| [StockDigest](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-stockdigest-0.2.0.zip) | 5 | 16165 | 3 / 0 | 0 / 0 |
-| [InvoiceRoute](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-invoiceroute-0.2.0.zip) | 5 | 14883 | 3 / 0 | 0 / 0 |
-| [DownloadRescue](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-downloadrescue-0.2.0.zip) | 5 | 17416 | 3 / 0 | 0 / 0 |
-| [HoursGo](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-hoursgo-0.2.0.zip) | 5 | 13638 | 3 / 0 | 0 / 1 |
-| [MediaMap](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-mediamap-0.2.0.zip) | 7 | 17437 | 4 / 1 | 0 / 3 |
-| [UseMap](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-usemap-0.2.0.zip) | 7 | 16877 | 4 / 1 | 0 / 3 |
-| [Passport](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-passport-0.2.0.zip) | 5 | 16477 | 3 / 0 | 0 / 0 |
-| [ReleaseGo](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-releasego-0.2.0.zip) | 5 | 16264 | 3 / 0 | 0 / 0 |
-| [MailSkin](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/coocadev-mailskin-0.2.0.zip) | 5 | 13275 | 3 / 0 | 0 / 0 |
+| [FileGo](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-filego-0.2.0.zip) | 10 | 32023 | 7 / 0 | 0 / 96 |
+| [UploadGo](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-uploadgo-0.2.0.zip) | 11 | 29418 | 7 / 1 | 0 / 7 |
+| [DispatchGo](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-dispatchgo-0.2.0.zip) | 10 | 26373 | 5 / 2 | 0 / 0 |
+| [Reader Notes](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-reader-notes-0.2.0.zip) | 13 | 35973 | 6 / 2 | 0 / 52 |
+| [DoneMark](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-donemark-0.2.0.zip) | 11 | 30668 | 7 / 1 | 0 / 12 |
+| [Client Nudge](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-client-nudge-0.2.0.zip) | 5 | 16678 | 3 / 0 | 0 / 10 |
+| [StockDigest](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-stockdigest-0.2.0.zip) | 5 | 16165 | 3 / 0 | 0 / 0 |
+| [InvoiceRoute](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-invoiceroute-0.2.0.zip) | 5 | 14883 | 3 / 0 | 0 / 0 |
+| [DownloadRescue](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-downloadrescue-0.2.0.zip) | 5 | 17416 | 3 / 0 | 0 / 0 |
+| [HoursGo](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-hoursgo-0.2.0.zip) | 5 | 13638 | 3 / 0 | 0 / 1 |
+| [MediaMap](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-mediamap-0.2.0.zip) | 7 | 17437 | 4 / 1 | 0 / 3 |
+| [UseMap](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-usemap-0.2.0.zip) | 7 | 16877 | 4 / 1 | 0 / 3 |
+| [Passport](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-passport-0.2.0.zip) | 5 | 16477 | 3 / 0 | 0 / 0 |
+| [ReleaseGo](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-releasego-0.2.0.zip) | 5 | 16264 | 3 / 0 | 0 / 0 |
+| [MailSkin](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/coocadev-mailskin-0.2.0.zip) | 5 | 13275 | 3 / 0 | 0 / 0 |
 
-All 109 runtime files were compared byte-for-byte between source, ZIP entries and real installed directories. Archive hashes, entry lengths/counts and installed file counts passed. PHP8.1 syntax and Node syntax passed for every applicable file. [Verified package manifest](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/verified-packages.json) contains each SHA-256; [SHA256SUMS](https://github.com/zagulev/coocadev-small-tools/releases/download/v0.2.0/SHA256SUMS.txt) covers release assets. The general source ZIP is development source, not a combined WordPress installer.
+All 109 runtime files were compared byte-for-byte between source, ZIP entries and real installed directories. Archive hashes, entry lengths/counts and installed file counts passed. PHP8.1 syntax and Node syntax passed for every applicable file. [Verified package manifest](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/verified-packages.json) contains each SHA-256; [SHA256SUMS](https://github.com/Coocadev/coocadev-small-tools/releases/download/v0.2.0/SHA256SUMS.txt) covers release assets. The general source ZIP is development source, not a combined WordPress installer.
 
 Warnings are disclosed: 184 total, principally reviewed prepared SQL, atomic/schema/lifecycle operations and the intentional DONOTCACHEPAGE interoperability constant. Product review reports and inline explanations record their disposition. Zero scanner errors does not mean absence of all future defects.
 

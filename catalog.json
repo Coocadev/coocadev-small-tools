@@ -1,7 +1,7 @@
 {
   "version": "0.2.0",
   "license": "GPL-2.0-or-later",
-  "source": "https://github.com/zagulev/coocadev-small-tools",
+  "source": "https://github.com/Coocadev/coocadev-small-tools",
   "products": [
     {"name":"FileGo","slug":"coocadev-filego","namespace":"Coocadev\\FileGo","prefix":"ccfg_","purpose":"Permanent public PDF links with version history and rollback"},
     {"name":"UploadGo","slug":"coocadev-uploadgo","namespace":"Coocadev\\UploadGo","prefix":"ccug_","purpose":"Role-aware upload limits that only tighten Core/server policy"},

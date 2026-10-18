@@ -8,7 +8,7 @@ You may run these plugins for any purpose, study them, modify them and redistrib
 
 Each `projects/<slug>/plugin/` is a complete independent WordPress plugin. PHP, JavaScript and CSS are readable and unminified. There is no mandatory Coocadev Core plugin, remote license check, locked local feature, paid activation or required Coocadev account. Runtime third-party dependencies, if any, are listed in each project's `DEPENDENCIES.md`; WooCommerce is an explicit dependency of the three commerce tools and DispatchGo.
 
-The canonical source repository is https://github.com/zagulev/coocadev-small-tools. Developer documentation, tests and packaging tools accompany the runtime code. Each installable ZIP contains its corresponding readable runtime source and GPL license; it needs no transpilation or minification. Source-release archives additionally include development files. English comments explain boundaries, data flow and the reasons behind security/concurrency decisions.
+The canonical source repository is https://github.com/Coocadev/coocadev-small-tools. Developer documentation, tests and packaging tools accompany the runtime code. Each installable ZIP contains its corresponding readable runtime source and GPL license; it needs no transpilation or minification. Source-release archives additionally include development files. English comments explain boundaries, data flow and the reasons behind security/concurrency decisions.
 
 ## Contributions and releases
 
